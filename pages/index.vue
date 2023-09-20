@@ -1,11 +1,14 @@
 <script setup>
 // Server Side
-const { data: serverData } = useFetch("/api/animal");
+const flexCenter = reactive({
+ display: "flex",
+ justifyContent: "center",
+});
+// const { data: serverData } = useFetch("/api/animal");
 </script>
 
 <template>
- <div>
-  <h2>Server</h2>
-  <pre>{{ serverData }}</pre>
+ <div :style="flexCenter">
+  <h1>BookSmart</h1>
  </div>
 </template>
