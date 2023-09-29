@@ -9,6 +9,10 @@ const flexCenter = reactive({
 
 <template>
  <div :style="flexCenter">
-  <h1>BookSmart</h1>
+  hello
+  <h1 class="heading-icon">
+   <span class="icon-1-half">Book</span>
+   <span class="icon-2-half">Smart</span>
+  </h1>
  </div>
 </template>
