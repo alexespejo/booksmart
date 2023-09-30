@@ -4,8 +4,6 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
 
 ## Setup
 
-kyle, greycin, alex
-testing
 Make sure to install the dependencies:
 
 ```bash
