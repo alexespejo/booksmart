@@ -1,8 +1,6 @@
-# Nuxt 3 Minimal Starter
+# BookSmart
 
-testing alex-test branch
-alex, greycin, kyle
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+by Kyle Tran, Greycin Kim, Torren Miller-Marcus and Alexander Espejo
 
 ## Setup
 
@@ -63,5 +61,3 @@ yarn preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
-
-# booksmart
