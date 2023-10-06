@@ -1,6 +1,6 @@
 # BookSmart
 
-by Kyle Tran, Greycin Kim, Torren Miller-Marcus and Alexander Espejo
+by Kyle Tran, Greycin Kim, Torren -Marcus and Alexander Espejo
 
 ## Setup
 
