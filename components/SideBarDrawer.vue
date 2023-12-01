@@ -10,9 +10,10 @@
    >
    <ul class="menu p-4 text-base-content w-72">
     <!-- Sidebar content here -->
-    <li><a>View Books</a></li>
-    <li><a>View Employees</a></li>
+    <li><NuxtLink to="viewBooks">View Books</NuxtLink></li>
+    <li><NuxtLink to="viewEmployees">View Employees</NuxtLink></li>
     <li><a>View Orders</a></li>
+    <li><a>View Customers</a></li>
    </ul>
    <div
     class="p-2 absolute bottom-0 left-0 right-0 m-auto border-t-2 border-base-300"

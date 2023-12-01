@@ -59,7 +59,10 @@ const { pending, data: books } = await useFetch("/api/getBooks", {
 
 <template>
  <main class="overflow-y-auto h-full">
-  <ul class="">
+  <div class="" v-if="pending">
+   <div class="spinning"></div>
+  </div>
+  <ul class="" v-else>
    <li
     v-for="(book, index) in books.books"
     :key="index"
