@@ -70,11 +70,11 @@ const { pending, data: books } = await useFetch("/api/getBooks", {
    >
     <div class="flex flex-col">
      <div class="">
-      <h1 class="text-xl w-fit">
+      <h1 class="text-2xl w-fit">
        {{ book.content.title }}
        <span
         v-if="book.content.edition != 'N/A'"
-        class="italic text-xs font-thin"
+        class="italic text-sm font-thin"
         >{{ addNumberSuffix(book.content.edition) }} Edition</span
        >
       </h1>
@@ -85,7 +85,7 @@ const { pending, data: books } = await useFetch("/api/getBooks", {
      </div>
     </div>
 
-    <div class="w-1/5 flex flex-col text-xs font-light italic">
+    <div class="w-1/5 flex flex-col text-base font-light italic">
      <h1>
       Condition:
       <span :class="getStatusColor(book.content.condition)">{{
@@ -98,7 +98,7 @@ const { pending, data: books } = await useFetch("/api/getBooks", {
      </h1>
      <AddToCartBtn
       :bookID="book.key"
-      class="btn btn-sm btn-neutral mt-auto border-2 border-base-200"
+      class="btn btn-md btn-neutral mt-auto border-2 border-base-200"
      />
     </div>
    </li>

@@ -1,5 +1,5 @@
 <template>
- <div class="drawer drawer-open w-fit bg-base-200">
+ <div class="drawer drawer-open w-fit bg-base-200 border-r-2 border-neutral">
   <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
   <div class="drawer-side min-fullrelative">
    <label
