@@ -2,6 +2,12 @@
 export default defineNuxtConfig({
  css: ["~/assets/css/global.css"],
  devtools: { enabled: true },
+ postcss: {
+  plugins: {
+   tailwindcss: {},
+   autoprefixer: {},
+  },
+ },
  runtimeConfig: {
   public: {
    apiKey: process.env.NUXT_FIREBASE_API_KEY,
