@@ -10,8 +10,9 @@
    >
    <ul class="menu p-4 text-base-content w-72">
     <!-- Sidebar content here -->
-    <li><a>Sidebar Item 1</a></li>
-    <li><a>Sidebar Item 2</a></li>
+    <li><a>View Books</a></li>
+    <li><a>View Employees</a></li>
+    <li><a>View Orders</a></li>
    </ul>
    <div
     class="p-2 absolute bottom-0 left-0 right-0 m-auto border-t-2 border-base-300"
