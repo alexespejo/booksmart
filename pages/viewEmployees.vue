@@ -2,13 +2,14 @@
 const { pending, data: data } = await useFetch("/api/getEmployees", {
  lazy: true,
 });
-
-
 </script>
 
 <template>
  <main>
-  <ul>
+  <div class="flex justify-center items-center h-full w-full" v-if="pending">
+   <h1 class="text-4xl">Loading..</h1>
+  </div>
+  <ul v-else>
    <li v-for="(employee, index) in data.employees" :key="index">
     <div class="collapse collapse-arrow bg-base-200 rounded-none border-b-2">
      <input type="radio" name="my-accordion-2" />
@@ -21,33 +22,34 @@ const { pending, data: data } = await useFetch("/api/getEmployees", {
       </div>
      </div>
      <div class="collapse-content">
-      <p>
-        <div class="overflow-x-auto">
-        <table class="table">
+      <div class="overflow-x-auto">
+       <table class="table">
         <!-- head -->
         <thead>
-        <tr>
-        <th>Hire Date</th>
-        <th>Address</th>
-        <th>Address 2</th>
-        <th>Phone</th>
-        <th>Birthday</th>
-        </tr>
+         <tr>
+          <th>Hire Date</th>
+          <th>Address</th>
+          <th>Address 2</th>
+          <th>Phone</th>
+          <th>Birthday</th>
+         </tr>
         </thead>
         <tbody>
-        <!-- row 1 -->
-        <tr>
-        <th>{{ employee.HireDate }}</th>
-        <td>{{ employee.Address1 }} {{ employee.City }}, {{ employee.State }}, {{ employee.Zip }}</td>
-        <td>{{ employee.Address2 }}</td>
-        <td>{{ employee.Phone }}</td>
-        <td>{{ employee.DOB }}</td>
-        </tr>
-        <!-- row 2 -->
+         <!-- row 1 -->
+         <tr>
+          <th>{{ employee.HireDate }}</th>
+          <td>
+           {{ employee.Address1 }} {{ employee.City }}, {{ employee.State }},
+           {{ employee.Zip }}
+          </td>
+          <td>{{ employee.Address2 }}</td>
+          <td>{{ employee.Phone }}</td>
+          <td>{{ employee.DOB }}</td>
+         </tr>
+         <!-- row 2 -->
         </tbody>
-        </table>
-        </div>
-      </p>
+       </table>
+      </div>
      </div>
     </div>
    </li>
