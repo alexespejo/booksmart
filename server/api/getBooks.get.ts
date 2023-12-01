@@ -7,17 +7,6 @@ import { db } from "../../composables/utils/firebase";
 @author
 @description An API that gets all books in the book collection
  */
-interface BookData {
- pubDate: number;
- edition: number;
- srp: number;
- sold: boolean;
- publisher: string;
- author: string;
- cost: number;
- title: string;
- condition: number;
-}
 
 export default defineEventHandler(async (event) => {
  const querySnapshot = await getDocs(collection(db, "books"));
