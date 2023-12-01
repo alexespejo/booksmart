@@ -1,3 +1,4 @@
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../composables/utils/firebase";
 
 /**
@@ -6,9 +7,13 @@ import { db } from "../../composables/utils/firebase";
 @author
 @description An API that gets all books in the book collection
  */
-export default defineEventHandler(async (event) => {
- const books_data: any = [];
 
+export default defineEventHandler(async (event) => {
+ const querySnapshot = await getDocs(collection(db, "books"));
+ const books_data: any = querySnapshot.docs.map((x) => {
+  const obj = { key: x.id, content: x.data() };
+  return obj;
+ });
  return {
   books: books_data,
  };

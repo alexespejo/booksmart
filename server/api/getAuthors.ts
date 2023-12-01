@@ -1,3 +1,4 @@
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../composables/utils/firebase";
 
 /**
@@ -7,7 +8,8 @@ import { db } from "../../composables/utils/firebase";
 @description An API that gets all authors in the authors collection
  */
 export default defineEventHandler(async (event) => {
- const authors_data: any = [];
+ const querySnapshot = await getDocs(collection(db, "authors"));
+ const authors_data: any = querySnapshot.docs.map((x) => x.data());
 
  return {
   authors: authors_data,
