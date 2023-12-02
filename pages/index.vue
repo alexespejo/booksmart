@@ -36,7 +36,11 @@ const fun = async () => {
 
 <template>
  <div class="">
-  <!-- {{ fun() }} -->
+  <AddToCartBtn
+   bookID="book.key"
+   bookTitle="book.content.title"
+   class="btn btn-md btn-neutral mt-auto border-2 border-base-200 max-w-fit"
+  /><!-- {{ fun() }} -->
   <button @click="fun()" class="btn">Click</button>
  </div>
 </template>
