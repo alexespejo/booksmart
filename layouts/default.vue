@@ -3,6 +3,7 @@ const cartItemCount = useCartCounter();
 </script>
 <template>
  <div class="flex w-full">
+  {{ demo }}
   <SideBarDrawer />
   <div
    class="w-full h-screen flex items-center justify-center p-10 overflow-hidden relative"
