@@ -9,7 +9,7 @@ const demo = useGuestDemo();
     for="my-drawer-2"
     aria-label="close sidebar"
     class="text-2xl flex items-center justify-center py-4 border-b-2 border-base-300"
-    >BookSmart {{ demo }}
+    >BookSmart
    </label>
    <ul class="menu p-4 text-base-content w-72 text-lg">
     <!-- Sidebar content here -->
