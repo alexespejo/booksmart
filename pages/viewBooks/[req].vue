@@ -1,5 +1,5 @@
 <script setup>
-import { useSearchBarInput } from "~/composables/states";
+import { useCartCounter, useSearchBarInput } from "~/composables/states";
 
 function getStatusColor(statusNum) {
  switch (statusNum) {
@@ -162,20 +162,21 @@ const computedList = computed(() => {
      </div>
     </div>
 
-    <div class="w-56 flex items-center text-base font-light ml-auto max-w-lg">
-     <div class="flex flex-col space-y-1 italic">
-      <h1>
+    <div class="w-56 flex items-center text-base ml-auto max-w-lg">
+     <div class="flex flex-col space-y-1">
+      <h1 class="font-light italic">
        Condition:
        <span :class="getStatusColor(book.content.condition)">{{
         getStatusMessage(book.content.condition)
        }}</span>
       </h1>
-      <h1>
+      <h1 class="font-light italic">
        <span v-if="book.content.sold"> In stock </span>
        <span v-else> Sold </span>
       </h1>
       <AddToCartBtn
        :bookID="book.key"
+       :bookTitle="book.content.title"
        class="btn btn-md btn-neutral mt-auto border-2 border-base-200 max-w-fit"
       />
      </div>

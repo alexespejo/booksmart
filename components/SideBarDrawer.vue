@@ -1,10 +1,8 @@
-<script setup>
-const test = useQueryType();
-</script>
+<script setup></script>
 <template>
  <div class="drawer drawer-open w-fit bg-base-200 border-r-2 border-neutral">
   <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-  <div class="drawer-side min-fullrelative">
+  <div class="drawer-side min-full relative">
    <label
     for="my-drawer-2"
     aria-label="close sidebar"
