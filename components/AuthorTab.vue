@@ -6,7 +6,10 @@ const { pending, data: authors } = await useLazyFetch(
 </script>
 
 <template>
- <h1 class="italic font-light text-sm">
-  By: {{ authors.author.LastName }}, {{ authors.author.FirstName }}
- </h1>
+ <div>
+  <h1 v-if="pending">Loading...</h1>
+  <h1 v-else class="italic font-light text-sm">
+   By: {{ authors.author.LastName }}, {{ authors.author.FirstName }}
+  </h1>
+ </div>
 </template>

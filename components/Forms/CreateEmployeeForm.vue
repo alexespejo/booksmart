@@ -1,5 +1,5 @@
 <template>
- <form action="" class="flex flex-col space-y-2 p-2">
+ <form @submit.prevent="" class="flex flex-col space-y-2 p-2">
   <label class="form-control w-full max-w-xs">
    <div class="label">
     <span class="label-text text-base">First Name</span>
@@ -69,6 +69,10 @@
    </select>
   </label>
 
-  <input type="submit" class="btn btn-primary max-w-fit ml-auto" />
+  <input
+   type="submit"
+   @submit.prevent=""
+   class="btn btn-primary max-w-fit ml-auto"
+  />
  </form>
 </template>

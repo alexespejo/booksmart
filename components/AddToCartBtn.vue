@@ -4,6 +4,7 @@ const cartCount = useCartCounter();
 function addToCart() {
  ++cartCount.value;
 }
+const demo = useGuestDemo();
 </script>
 
 <template>
@@ -15,7 +16,12 @@ function addToCart() {
   <label :for="props.bookID" :class="props.class">Add to Cart</label>
 
   <!-- Put this part before </body> tag -->
-  <input type="checkbox" :id="props.bookID" class="modal-toggle" />
+  <input
+   :disabled="demo"
+   type="checkbox"
+   :id="props.bookID"
+   class="modal-toggle"
+  />
   <div class="modal" role="dialog">
    <div class="modal-box">
     <h3 class="font-bold text-lg">
