@@ -17,8 +17,8 @@ const { pending, data: data } = await useFetch("/api/getEmployees", {
        ✕
       </button>
      </form>
-     <h3 class="font-bold text-lg">Hello!</h3>
-     <p class="py-4">Press ESC key or click on ✕ button to close</p>
+     <h3 class="font-bold text-xl border-b-2">Add a New Employee</h3>
+     <FormsCreateEmployeeForm />
     </div>
    </dialog>
   </div>
