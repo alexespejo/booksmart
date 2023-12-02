@@ -1,4 +1,4 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where, orderBy } from "firebase/firestore";
 import { db } from "../../composables/utils/firebase";
 
 /**
@@ -9,7 +9,28 @@ import { db } from "../../composables/utils/firebase";
  */
 
 export default defineEventHandler(async (event) => {
- const querySnapshot = await getDocs(collection(db, "books"));
+ const reqQuery: any = getQuery(event);
+ const bookCollection = collection(db, "books");
+ let bookQuery: any = bookCollection;
+ if (reqQuery.req === "showSold") {
+  bookQuery = query(bookCollection, where("sold", "==", false));
+ } else if (reqQuery.req === "showStock") {
+  bookQuery = query(bookCollection, where("sold", "==", true));
+ }
+ //  if (reqQuery.req === "titleAlphaAsc") {
+ //   bookQuery = query(bookCollection, orderBy("title", "asc"));
+ //  } else if (reqQuery.req === "titleAlphaDesc") {
+ //   bookQuery = query(bookCollection, orderBy("title", "desc"));
+ //  } else if (reqQuery.req === "costAsc") {
+ //   bookQuery = query(bookCollection, orderBy("cost", "asc"));
+ //  } else if (reqQuery.req === "costDesc") {
+ //   bookQuery = query(bookCollection, orderBy("cost", "desc"));
+ //  } else if (reqQuery.req === "bookStock") {
+ //   bookQuery = query(bookCollection, where("sold", "==", false));
+ //  }
+ //  if (reqQuery !== null) {
+ const querySnapshot = await getDocs(bookQuery);
+
  const books_data: any = querySnapshot.docs.map((x) => {
   const obj = { key: x.id, content: x.data() };
   return obj;
@@ -17,4 +38,8 @@ export default defineEventHandler(async (event) => {
  return {
   books: books_data,
  };
+ //  }
+ //  return {
+ //   bad: reqQuery.req,
+ //  };
 });

@@ -5,7 +5,7 @@
    class="w-full h-screen flex items-center justify-center p-10 overflow-hidden"
   >
    <div
-    class="bg-base-200 w-full h-full overflow-auto rounded-xl border-2 border-neutral"
+    class="h-5/6 w-full overflow-y-auto relative rounded-xl border-2 border-neutral bg-base-200"
    >
     <slot />
    </div>

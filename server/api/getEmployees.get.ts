@@ -14,7 +14,6 @@ export default defineEventHandler(async (event) => {
   empData["ID"] = x.id;
   return empData;
  });
- console.log(employees_data);
  return {
   employees: employees_data,
  };

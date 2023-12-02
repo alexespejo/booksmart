@@ -5,9 +5,12 @@ const { pending, data: data } = await useFetch("/api/getEmployees", {
 </script>
 
 <template>
- <main>
+ <main class="">
   <div class="flex justify-center items-center h-full w-full" v-if="pending">
-   <h1 class="text-4xl">Loading..</h1>
+   <span class="loading loading-bars loading-xs"></span>
+   <span class="loading loading-bars loading-sm"></span>
+   <span class="loading loading-bars loading-md"></span>
+   <span class="loading loading-bars loading-lg"></span>
   </div>
   <ul v-else>
    <li v-for="(employee, index) in data.employees" :key="index">
