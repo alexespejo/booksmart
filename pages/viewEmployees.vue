@@ -6,6 +6,22 @@ const { pending, data: data } = await useFetch("/api/getEmployees", {
 
 <template>
  <main class="">
+  <div class="sticky top-0 border-b-2 px-5 py-4 bg-base-100 flex items-center">
+   <button class="btn btn-accent ml-auto" onclick="my_modal_3.showModal()">
+    Add New Employee
+   </button>
+   <dialog id="my_modal_3" class="modal">
+    <div class="modal-box h-5/6">
+     <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+       ✕
+      </button>
+     </form>
+     <h3 class="font-bold text-lg">Hello!</h3>
+     <p class="py-4">Press ESC key or click on ✕ button to close</p>
+    </div>
+   </dialog>
+  </div>
   <div class="flex justify-center items-center h-full w-full" v-if="pending">
    <span class="loading loading-bars loading-xs"></span>
    <span class="loading loading-bars loading-sm"></span>

@@ -4,15 +4,15 @@ import { useSearchBarInput } from "~/composables/states";
 function getStatusColor(statusNum) {
  switch (statusNum) {
   case 1:
-   return "text-red-300";
+   return "text-error";
   case 2:
-   return "text-orange-300";
+   return "text-warning";
   case 3:
-   return "text-yellow-300";
+   return "text-info";
   case 4:
-   return "text-blue-300";
+   return "success";
   case 5:
-   return "text-green-300";
+   return "accent";
  }
 }
 function getStatusMessage(statusNum) {
@@ -78,7 +78,9 @@ const computedList = computed(() => {
 
 <template>
  <main>
-  <div class="sticky top-0 border-b-2 px-5 py-4 bg-base-100 flex items-center">
+  <div
+   class="sticky top-0 border-b-2 px-5 py-4 bg-base-100 flex items-center z-50"
+  >
    <div class="join">
     <div>
      <div>
@@ -116,14 +118,16 @@ const computedList = computed(() => {
     Add New Book
    </button>
    <dialog id="my_modal_3" class="modal">
-    <div class="modal-box h-5/6">
+    <div class="modal-box h-full overflow-hidden">
      <form method="dialog">
       <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
        ✕
       </button>
      </form>
-     <h3 class="font-bold text-lg">Hello!</h3>
-     <p class="py-4">Press ESC key or click on ✕ button to close</p>
+     <h3 class="font-bold text-xl border-b-2">Add a New Book</h3>
+     <div class="h-full overflow-y-auto">
+      <FormsCreateBookForm />
+     </div>
     </div>
    </dialog>
   </div>
@@ -139,7 +143,7 @@ const computedList = computed(() => {
    <li
     v-for="(book, index) in computedList"
     :key="index"
-    class="flex justify-between border-b-2 p-5 h-32"
+    class="flex border-b-2 p-5 h-min max-h-min"
    >
     <div class="flex flex-col">
      <div class="">
@@ -158,21 +162,28 @@ const computedList = computed(() => {
      </div>
     </div>
 
-    <div class="w-1/5 flex flex-col text-base font-light italic">
-     <h1>
-      Condition:
-      <span :class="getStatusColor(book.content.condition)">{{
-       getStatusMessage(book.content.condition)
-      }}</span>
-     </h1>
-     <h1>
-      <span v-if="book.content.sold"> In stock </span>
-      <span v-else> Sold </span>
-     </h1>
-     <AddToCartBtn
-      :bookID="book.key"
-      class="btn btn-md btn-neutral mt-auto border-2 border-base-200"
-     />
+    <div class="w-56 flex items-center text-base font-light ml-auto max-w-lg">
+     <div class="flex flex-col space-y-1 italic">
+      <h1>
+       Condition:
+       <span :class="getStatusColor(book.content.condition)">{{
+        getStatusMessage(book.content.condition)
+       }}</span>
+      </h1>
+      <h1>
+       <span v-if="book.content.sold"> In stock </span>
+       <span v-else> Sold </span>
+      </h1>
+      <AddToCartBtn
+       :bookID="book.key"
+       class="btn btn-md btn-neutral mt-auto border-2 border-base-200 max-w-fit"
+      />
+     </div>
+     <div class="tooltip ml-auto" data-tip="Edit">
+      <button class="btn btn-ghost">
+       <ButtonsThreeDotButton />
+      </button>
+     </div>
     </div>
    </li>
   </ul>
