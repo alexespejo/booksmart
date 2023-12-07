@@ -131,7 +131,7 @@ const demo = useGuestDemo();
         ✕
        </button>
       </form>
-      <h3 class="font-bold text-xl border-b-2">Add a New Book</h3>
+      <h3 class="font-bold text-xl border-b-2 mb-2">Add a New Book</h3>
       <div class="h-full overflow-y-auto">
        <FormsCreateBookForm />
       </div>
@@ -178,7 +178,7 @@ const demo = useGuestDemo();
         }}</span>
        </h1>
        <h1 class="font-light italic">
-        <span v-if="book.content.sold"> In stock </span>
+        <span v-if="!book.content.sold"> In stock </span>
         <span v-else> Sold </span>
        </h1>
        <AddToCartBtn

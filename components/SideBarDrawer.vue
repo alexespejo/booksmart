@@ -19,7 +19,7 @@ const demo = useGuestDemo();
     <li>
      <NuxtLink to="/viewEmployees">View Employees</NuxtLink>
     </li>
-    <li><a>View Orders</a></li>
+    <li><NuxtLink to="/viewOrders">View Orders</NuxtLink></li>
     <li><a>View Customers</a></li>
    </ul>
    <div
