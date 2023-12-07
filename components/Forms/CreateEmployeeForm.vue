@@ -1,5 +1,47 @@
+<script setup>
+function getCurrentDate() {
+ const today = new Date();
+ const month = (today.getMonth() + 1).toString().padStart(2, "0"); // Months are zero-based
+ const day = today.getDate().toString().padStart(2, "0");
+ const year = today.getFullYear().toString();
+
+ return `${month}/${day}/${year}`;
+}
+const employeeInfo = reactive({
+ Address1: "",
+ Address2: "",
+ City: "",
+ DOB: "",
+ FirstName: "",
+ HireDate: "",
+ LastName: "",
+ Phone: "",
+ Position: "",
+ State: "",
+ Zip: "",
+});
+
+async function createEmployee() {
+ const newEmployee = await $fetch("/api/createEmployees", {
+  method: "post",
+  body: {
+   Address1: employeeInfo.Address1,
+   Address2: employeeInfo.Address2,
+   City: employeeInfo.City,
+   DOB: employeeInfo.DOB,
+   FirstName: employeeInfo.FirstName,
+   HireDate: getCurrentDate(),
+   LastName: employeeInfo.LastName,
+   Phone: employeeInfo.Phone,
+   Position: employeeInfo.Position,
+   State: employeeInfo.State,
+   Zip: employeeInfo.Zip,
+  },
+ });
+}
+</script>
 <template>
- <form @submit.prevent="" class="flex flex-col space-y-2 p-2">
+ <form class="flex flex-col space-y-2 p-2">
   <label class="form-control w-full max-w-xs">
    <div class="label">
     <span class="label-text text-base">First Name</span>
@@ -8,6 +50,7 @@
     type="text"
     placeholder="Type here"
     class="input input-sm input-bordered w-full max-w-xs"
+    v-model="employeeInfo.FirstName"
    />
   </label>
   <label class="form-control w-full max-w-xs">
@@ -18,6 +61,7 @@
     type="text"
     placeholder="Type here"
     class="input input-sm input-bordered w-full max-w-xs"
+    v-model="employeeInfo.LastName"
    />
   </label>
   <label class="form-control w-full max-w-xs">
@@ -28,6 +72,7 @@
     type="text"
     placeholder="Type here"
     class="input input-sm input-bordered w-full max-w-xs"
+    v-model="employeeInfo.Address1"
    />
   </label>
   <label class="form-control w-full max-w-xs">
@@ -38,6 +83,18 @@
     type="text"
     placeholder="Type here"
     class="input input-sm input-bordered w-full max-w-xs"
+    v-model="employeeInfo.Address2"
+   />
+  </label>
+  <label class="form-control w-full max-w-xs">
+   <div class="label">
+    <span class="label-text text-base">State</span>
+   </div>
+   <input
+    type="text"
+    placeholder="Type here"
+    class="input input-sm input-bordered w-full max-w-xs"
+    v-model="employeeInfo.State"
    />
   </label>
   <label class="form-control w-full max-w-xs">
@@ -48,6 +105,7 @@
     type="text"
     placeholder="Type here"
     class="input input-sm input-bordered w-full max-w-xs"
+    v-model="employeeInfo.Zip"
    />
   </label>
   <label class="form-control w-full max-w-xs">
@@ -58,21 +116,21 @@
     type="text"
     placeholder="(---) --- ---"
     class="input input-sm input-bordered w-full max-w-xs"
+    v-model="employeeInfo.Phone"
    />
   </label>
+
   <label class="form-control w-full max-w-xs">
    <div class="label">
     <span class="label-text">Position</span>
    </div>
-   <select class="select select-bordered">
+   <select v-model="employeeInfo.Position" class="select select-bordered">
     <option disabled selected>Pick one</option>
+    <option value="Full Time Clerk">Full Time Clerk</option>
    </select>
   </label>
-
-  <input
-   type="submit"
-   @submit.prevent=""
-   class="btn btn-primary max-w-fit ml-auto"
-  />
+  <button @click.prevent="createEmployee" class="btn btn-accent max-w-fit">
+   Create
+  </button>
  </form>
 </template>

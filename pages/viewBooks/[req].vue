@@ -188,9 +188,7 @@ const demo = useGuestDemo();
        />
       </div>
       <div class="tooltip ml-auto" data-tip="Edit">
-       <button :disabled="demo" class="btn btn-ghost">
-        <ButtonsThreeDotButton />
-       </button>
+       <ButtonsModifyBookButton :bookID="book.key" />
       </div>
      </div>
     </li>

@@ -1,20 +1,19 @@
 <script setup>
-async function createAuthor() {
- const author = await $fetch("/api/createAuthor", {
-  method: "post",
-  body: {
-   authorID: "420",
-   description: "",
-   firstName: "",
-   lastName: "",
-   yearBorn: "",
-   yearDied: "",
-  },
- });
+const lName = ref("101");
+
+async function doSomething() {
+ const { pending, data: last } = await useFetch(
+  `/api/getLastName?authorID=${lName.value}`
+ );
+}
+function doAnotherThing() {
+ alert(doSomething());
 }
 </script>
 <template>
- <main class="">
-  <button @click="createAuthor">Click</button>
- </main>
+ <NuxtLayout>
+  <main class="flex items-end justify-end">
+   <button class="btn" @click="doAnotherThing">click</button>
+  </main>
+ </NuxtLayout>
 </template>

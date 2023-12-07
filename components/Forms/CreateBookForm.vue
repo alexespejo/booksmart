@@ -8,7 +8,7 @@ const formInput = reactive({
  inSold: "",
  inSrp: "",
  inCost: "",
- inAuthor: "",
+ inAuthor: {},
 });
 function conditionColorChanger() {
  switch (formInput.inCondition) {
@@ -60,6 +60,9 @@ function generateRandomThreeDigitNumber() {
  return Math.floor(Math.random() * 900) + 100;
 }
 
+async function getLastName(id) {
+ return await $fetch(`/api/lastName?authorID=${id}`);
+}
 const { pending, data: authors } = await useLazyFetch(`/api/getAuthors`);
 
 const authorFname = ref("");
@@ -82,7 +85,9 @@ async function createBook() {
  const data = await $fetch("/api/createBook", {
   method: "post",
   body: {
-   book_id: bookID,
+   book_id: existingAuthorToggle.value
+    ? generateUniqueId(formInput.inAuthor.m_lname)
+    : bookID,
    inTitle: formInput.inTitle,
    inCondition: formInput.inCondition,
    inPubDate: formInput.inPubDate,
@@ -90,7 +95,7 @@ async function createBook() {
    inPublisher: formInput.inPublisher,
    inSrp: formInput.inSrp,
    inCost: formInput.inCost,
-   inAuthor: existingAuthorToggle.value ? formInput.inAuthor : authorID,
+   inAuthor: existingAuthorToggle.value ? formInput.inAuthor.m_id : authorID,
   },
  });
 }
@@ -99,7 +104,6 @@ const existingAuthorToggle = ref(false);
 
 <template>
  <form action="" class="flex flex-col space-y-6 p-2 pb-5 w-full">
-  {{ existingAuthorToggle }}
   <label class="form-control w-full max-w-xs">
    <div class="label">
     <span class="label-text text-xl">Book Title</span>
@@ -204,7 +208,7 @@ const existingAuthorToggle = ref(false);
     <option
      v-for="(author, index) in authors.authors"
      :key="index"
-     :value="author.ID"
+     :value="{ m_id: author.ID, m_lname: author.LastName }"
     >
      {{ author.FirstName }} {{ author.LastName ? author.LastName : "" }}
     </option>
