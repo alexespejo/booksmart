@@ -1,7 +1,17 @@
 <script setup>
-const conditionRangeInput = ref("0");
+const formInput = reactive({
+ inTitle: "",
+ inCondition: "",
+ inPubDate: "",
+ inEdition: "",
+ inPublisher: "",
+ inSold: "",
+ inSrp: "",
+ inCost: "",
+ inAuthor: "",
+});
 function conditionColorChanger() {
- switch (conditionRangeInput.value) {
+ switch (formInput.inCondition) {
   case "25":
    return "range-error";
   case "50":
@@ -17,7 +27,7 @@ function conditionColorChanger() {
  }
 }
 function getStatusMessage() {
- switch (conditionRangeInput.value) {
+ switch (formInput.inCondition) {
   case "25":
    return "Poor";
   case "50":
@@ -34,6 +44,23 @@ function getStatusMessage() {
 }
 
 const { pending, data: authors } = await useLazyFetch(`/api/getAuthors`);
+
+async function createBook() {
+ const data = await $fetch("/api/createBook", {
+  method: "post",
+  body: {
+   inTitle: formInput.inTitle,
+   inCondition: formInput.inCondition,
+   inPubDate: formInput.inPubDate,
+   inEdition: formInput.inEdition,
+   inPublisher: formInput.inPublisher,
+   inSold: formInput.inSold,
+   inSrp: formInput.inSrp,
+   inCost: formInput.inCost,
+   inAuthor: formInput.inAuthor,
+  },
+ });
+}
 const existingAuthorToggle = ref(false);
 </script>
 
@@ -47,6 +74,7 @@ const existingAuthorToggle = ref(false);
     type="text"
     placeholder="Type here"
     class="input input-bordered w-full max-w-xs"
+    v-model="formInput.inTitle"
    />
   </label>
 
@@ -60,7 +88,7 @@ const existingAuthorToggle = ref(false);
     max="125"
     :class="`range ` + conditionColorChanger()"
     step="25"
-    v-model="conditionRangeInput"
+    v-model="formInput.inCondition"
    />
    <div class="w-full flex justify-between text-xs px-2">
     <span>|</span>
@@ -81,9 +109,17 @@ const existingAuthorToggle = ref(false);
      <input type="checkbox" class="toggle" v-model="existingAuthorToggle" />
     </label>
    </div>
-   <select v-if="existingAuthorToggle" class="select select-bordered">
+   <select
+    v-if="existingAuthorToggle"
+    class="select select-bordered"
+    v-model="formInput.inAuthor"
+   >
     <option selected>Authors</option>
-    <option v-for="(author, index) in authors.authors" :key="index">
+    <option
+     v-for="(author, index) in authors.authors"
+     :key="index"
+     :value="author.ID"
+    >
      {{ author.FirstName }} {{ author.LastName }}
     </option>
    </select>
@@ -104,5 +140,6 @@ const existingAuthorToggle = ref(false);
     placeholder="Type Here"
    ></textarea>
   </label>
+  <button @click="createBook">Create Book</button>
  </form>
 </template>

@@ -121,11 +121,7 @@ const demo = useGuestDemo();
       </li>
      </ul>
     </div>
-    <button
-     :disabled="demo"
-     class="btn btn-accent ml-auto"
-     onclick="my_modal_3.showModal()"
-    >
+    <button class="btn btn-accent ml-auto" onclick="my_modal_3.showModal()">
      Add New Book
     </button>
     <dialog id="my_modal_3" class="modal">
