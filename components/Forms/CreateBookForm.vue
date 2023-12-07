@@ -1,7 +1,7 @@
 <script setup>
 const formInput = reactive({
  inTitle: "",
- inCondition: "",
+ inCondition: "0",
  inPubDate: "",
  inEdition: "",
  inPublisher: "",
@@ -77,7 +77,36 @@ const existingAuthorToggle = ref(false);
     v-model="formInput.inTitle"
    />
   </label>
-
+  <label class="form-control w-full max-w-xs">
+   <div class="label">
+    <span class="label-text text-xl">Set Price</span>
+   </div>
+   <div class="join">
+    <div class="">
+     <div class="label">
+      <span class="label-text">Enter Price</span>
+     </div>
+     <input
+      type="number"
+      placeholder="Enter Price "
+      class="input input-bordered w-full max-w-xs join-item"
+      v-model="formInput.inCost"
+     />
+    </div>
+    <div class="">
+     <div class="label">
+      <span class="label-text">Enter SRP</span>
+     </div>
+     <input
+      type="number"
+      placeholder="Enter SRP "
+      class="input input-bordered w-full max-w-xs join-item"
+      min="0"
+      v-model="formInput.inSrp"
+     />
+    </div>
+   </div>
+  </label>
   <label class="form-control w-full max-w-xs">
    <div class="label">
     <span class="label-text text-xl">Condition: {{ getStatusMessage() }}</span>
