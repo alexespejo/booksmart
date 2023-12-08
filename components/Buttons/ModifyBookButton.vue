@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps(["bookID"]);
+const props = defineProps(["bookID", "title", "index"]);
 
 async function deleteBook() {
  await $fetch(`/api/deleteDocument`, {
@@ -14,15 +14,26 @@ async function deleteBook() {
 
 <template>
  <div class="dropdown dropdown-left">
-  <div tabindex="0" role="button" class="btn m-1">
+  <!-- The button to open modal -->
+  <label :for="`my_modal_${props.index}`" class="btn btn-sm">
    <ButtonsThreeDotButton />
+  </label>
+
+  <!-- Put this part before </body> tag -->
+  <input type="checkbox" :id="`my_modal_${props.index}`" class="modal-toggle" />
+  <div class="modal z-[100]" role="dialog">
+   <div class="modal-box">
+    <h3 class="font-bold text-lg">
+     Edit <span class="italic font-light">{{ props.title }}</span>
+    </h3>
+    <p class="py-4">
+     <button class="btn btn-info">Update Book</button>
+     <button @click="deleteBook" class="btn btn-error">Delete Book</button>
+    </p>
+    <div class="modal-action">
+     <label :for="`my_modal_${props.index}`" class="btn">Close!</label>
+    </div>
+   </div>
   </div>
-  <ul
-   tabindex="0"
-   class="dropdown-content z-[50] menu p-2 shadow bg-base-100 rounded-box w-52"
-  >
-   <button @click="deleteBook" class="btn btn-sm btn-error">Delete</button>
-   <button @click="deleteBook" class="btn btn-sm">Edit</button>
-  </ul>
  </div>
 </template>

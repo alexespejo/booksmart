@@ -2,6 +2,9 @@
 import { useCartCounter, useSearchBarInput } from "~/composables/states";
 
 function getStatusColor(statusNum) {
+ if (statusNum % 25 == 0) {
+  statusNum /= 25;
+ }
  switch (statusNum) {
   case 1:
    return "text-error";
@@ -16,6 +19,9 @@ function getStatusColor(statusNum) {
  }
 }
 function getStatusMessage(statusNum) {
+ if (statusNum % 25 == 0) {
+  statusNum /= 25;
+ }
  switch (statusNum) {
   case 1:
    return "Poor";
@@ -24,7 +30,7 @@ function getStatusMessage(statusNum) {
   case 3:
    return "Good";
   case 4:
-   return "Eggcellent";
+   return "Excellent";
   case 5:
    return "Superb";
   default:
@@ -34,7 +40,7 @@ function getStatusMessage(statusNum) {
 function addNumberSuffix(number) {
  if (typeof number !== "number" || isNaN(number)) {
   // Check if the input is a valid number
-  return "Invalid input";
+  return false;
  }
 
  if (number % 100 >= 11 && number % 100 <= 13) {
@@ -138,7 +144,6 @@ const demo = useGuestDemo();
      </div>
     </dialog>
    </div>
-   {{ dataCache }}
    <div class="flex justify-center items-center h-full" v-if="pending">
     <span class="loading loading-bars loading-xs"></span>
     <span class="loading loading-bars loading-sm"></span>
@@ -157,12 +162,15 @@ const demo = useGuestDemo();
        <h1 class="text-2xl w-fit">
         {{ book.content.title }}
         <span
-         v-if="book.content.edition != 'N/A'"
+         v-if="
+          book.content.edition != 'N/A' && addNumberSuffix(book.content.edition)
+         "
          class="italic text-sm font-thin"
          >{{ addNumberSuffix(book.content.edition) }} Edition</span
         >
        </h1>
        <h1 class="text-base font-normal">${{ book.content.cost }}</h1>
+       <h1 class="text-base font-normal">SRP: ${{ book.content.srp }}</h1>
       </div>
       <div class="">
        <AuthorTab :authorID="book.content.author" />
@@ -188,7 +196,11 @@ const demo = useGuestDemo();
        />
       </div>
       <div class="tooltip ml-auto" data-tip="Edit">
-       <ButtonsModifyBookButton :bookID="book.key" />
+       <ButtonsModifyBookButton
+        :bookID="book.key"
+        :title="book.content.title"
+        :index="index"
+       />
       </div>
      </div>
     </li>
