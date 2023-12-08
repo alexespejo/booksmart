@@ -13,9 +13,9 @@ export default defineEventHandler(async (event) => {
  const bookCollection = collection(db, "books");
  let bookQuery: any = bookCollection;
  if (reqQuery.req === "showSold") {
-  bookQuery = query(bookCollection, where("sold", "==", false));
- } else if (reqQuery.req === "showStock") {
   bookQuery = query(bookCollection, where("sold", "==", true));
+ } else if (reqQuery.req === "showStock") {
+  bookQuery = query(bookCollection, where("sold", "==", false));
  }
  //  if (reqQuery.req === "titleAlphaAsc") {
  //   bookQuery = query(bookCollection, orderBy("title", "asc"));

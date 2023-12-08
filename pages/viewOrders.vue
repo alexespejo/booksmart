@@ -1,20 +1,18 @@
 <script setup>
-async function createAuthor() {
- const author = await $fetch("/api/createAuthor", {
+async function updateBooks() {
+ await $fetch("/api/addBookToAuthor", {
   method: "post",
   body: {
-   authorID: "420",
-   description: "",
-   firstName: "",
-   lastName: "",
-   yearBorn: "",
-   yearDied: "",
+   authorID: "107",
+   bookID: "DICKENSON8596",
   },
  });
 }
 </script>
 <template>
- <main class="">
-  <button @click="createAuthor">Click</button>
- </main>
+ <NuxtLayout>
+  <main class="flex items-end justify-end">
+   <button class="btn" @click="updateBooks">click</button>
+  </main>
+ </NuxtLayout>
 </template>

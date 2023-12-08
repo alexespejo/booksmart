@@ -10,4 +10,4 @@ export const useQueryType = () =>
   return "hello";
  });
 
-export const useGuestDemo = () => useState<boolean>("user", () => true);
+export const useGuestDemo = () => useState<boolean>("user", () => false);

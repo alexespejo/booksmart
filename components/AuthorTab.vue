@@ -8,8 +8,12 @@ const { pending, data: authors } = await useLazyFetch(
 <template>
  <div>
   <h1 v-if="pending">Loading...</h1>
-  <h1 v-else class="italic font-light text-sm">
+  <NuxtLink
+   :to="`/viewAuthor/${props.authorID}`"
+   v-else
+   class="italic font-light text-sm"
+  >
    By: {{ authors.author.LastName }}, {{ authors.author.FirstName }}
-  </h1>
+  </NuxtLink>
  </div>
 </template>
