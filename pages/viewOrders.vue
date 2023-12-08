@@ -1,19 +1,18 @@
 <script setup>
-const lName = ref("101");
-
-async function doSomething() {
- const { pending, data: last } = await useFetch(
-  `/api/getLastName?authorID=${lName.value}`
- );
-}
-function doAnotherThing() {
- alert(doSomething());
+async function updateBooks() {
+ await $fetch("/api/addBookToAuthor", {
+  method: "post",
+  body: {
+   authorID: "107",
+   bookID: "DICKENSON8596",
+  },
+ });
 }
 </script>
 <template>
  <NuxtLayout>
   <main class="flex items-end justify-end">
-   <button class="btn" @click="doAnotherThing">click</button>
+   <button class="btn" @click="updateBooks">click</button>
   </main>
  </NuxtLayout>
 </template>

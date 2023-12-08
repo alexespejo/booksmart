@@ -1,14 +1,15 @@
 <script setup>
-const props = defineProps(["bookID"]);
+const props = defineProps(["empID"]);
 
 async function deleteBook() {
  await $fetch(`/api/deleteDocument`, {
   method: "delete",
   body: {
-   empID: props.bookID,
-   docType: "books",
+   empID: props.empID,
+   docType: "employees",
   },
  });
+ navigateTo("/viewEmployees");
 }
 </script>
 
@@ -21,8 +22,8 @@ async function deleteBook() {
    tabindex="0"
    class="dropdown-content z-[50] menu p-2 shadow bg-base-100 rounded-box w-52"
   >
-   <button @click="deleteBook" class="btn btn-sm btn-error">Delete</button>
    <button @click="deleteBook" class="btn btn-sm">Edit</button>
+   <button @click="deleteBook" class="btn btn-error btn-sm">Delete</button>
   </ul>
  </div>
 </template>

@@ -11,7 +11,6 @@ export default defineEventHandler(async (event) => {
  const query = getQuery(event);
  const docRef = doc(db, "authors", query.authorID);
  const docSnap = await getDoc(docRef);
- console.log(docSnap.data());
  return {
   author: docSnap.data(),
  };

@@ -46,8 +46,8 @@ const demo = useGuestDemo();
         <h2 class="italic text-base">{{ employee.Position }}</h2>
        </div>
       </div>
-      <div class="collapse-content">
-       <div class="overflow-x-auto">
+      <div class="collapse-content flex">
+       <div class="overflow-x-auto overflow-y-hidden">
         <table class="table">
          <!-- head -->
          <thead>
@@ -56,6 +56,7 @@ const demo = useGuestDemo();
            <th>Address</th>
            <th>Address 2</th>
            <th>Phone</th>
+           <th>Birthday</th>
            <th>Birthday</th>
           </tr>
          </thead>
@@ -74,6 +75,9 @@ const demo = useGuestDemo();
           <!-- row 2 -->
          </tbody>
         </table>
+       </div>
+       <div class="ml-auto">
+        <ButtonsDeleteEmployeeButton :empID="employee.ID" />
        </div>
       </div>
      </div>

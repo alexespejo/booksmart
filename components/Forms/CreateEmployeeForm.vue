@@ -129,7 +129,7 @@ async function createEmployee() {
     <option value="Full Time Clerk">Full Time Clerk</option>
    </select>
   </label>
-  <button @click.prevent="createEmployee" class="btn btn-accent max-w-fit">
+  <button @click="createEmployee" class="btn btn-accent max-w-fit">
    Create
   </button>
  </form>

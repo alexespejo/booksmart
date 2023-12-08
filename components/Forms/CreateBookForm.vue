@@ -68,11 +68,12 @@ const { pending, data: authors } = await useLazyFetch(`/api/getAuthors`);
 const authorFname = ref("");
 const authorLname = ref("");
 async function createBook() {
- let bookID = generateUniqueId(authorLname.value);
+ let bookID = "";
  let authorID = "";
  if (!existingAuthorToggle.value) {
+  bookID = generateUniqueId(authorLname.value);
   authorID = generateRandomThreeDigitNumber();
-  const newAuthor = await $fetch("/api/createAuthor", {
+  await $fetch("/api/createAuthor", {
    method: "post",
    body: {
     authorID: authorID.toString(),
@@ -82,7 +83,22 @@ async function createBook() {
    },
   });
  }
- const data = await $fetch("/api/createBook", {
+ alert(bookID);
+
+ try {
+  await $fetch("/api/addBookToAuthor", {
+   method: "post",
+   body: {
+    authorID: existingAuthorToggle.value ? formInput.inAuthor.m_id : authorID,
+    bookID: existingAuthorToggle.value
+     ? generateUniqueId(formInput.inAuthor.m_lname)
+     : bookID,
+   },
+  });
+ } catch (error) {
+  console.error("Error shit unluky");
+ }
+ await $fetch("/api/createBook", {
   method: "post",
   body: {
    book_id: existingAuthorToggle.value
@@ -104,6 +120,8 @@ const existingAuthorToggle = ref(false);
 
 <template>
  <form action="" class="flex flex-col space-y-6 p-2 pb-5 w-full">
+  {{ existingAuthorToggle }}
+  {{ authorLname }}
   <label class="form-control w-full max-w-xs">
    <div class="label">
     <span class="label-text text-xl">Book Title</span>
@@ -238,7 +256,10 @@ const existingAuthorToggle = ref(false);
     placeholder="Type Here"
    ></textarea>
   </label>
-  <button @click="createBook" class="btn btn-accent btn-md max-w-fit ml-auto">
+  <button
+   @click.prevent="createBook"
+   class="btn btn-accent btn-md max-w-fit ml-auto"
+  >
    Create Book
   </button>
  </form>

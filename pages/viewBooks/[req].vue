@@ -10,9 +10,9 @@ function getStatusColor(statusNum) {
   case 3:
    return "text-info";
   case 4:
-   return "success";
+   return "text-success";
   case 5:
-   return "accent";
+   return "text-accent";
  }
 }
 function getStatusMessage(statusNum) {
