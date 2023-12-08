@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
  const body = await readBody(event);
  const docRef = await setDoc(doc(db, "books", body.book_id), {
   title: body.inTitle ? body.inTitle : "",
-  condition: body.inCondition ? body.inCondition : "",
+  condition: body.inCondition ? parseInt(body.inCondition) / 25 : 0,
   pubDate: body.inPubDate ? body.inPubDate : "",
   edition: body.inEdition ? body.inEdition : "",
   publisher: body.inPublisher ? body.inPublisher : "n/a",

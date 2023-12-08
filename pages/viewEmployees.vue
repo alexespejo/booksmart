@@ -25,12 +25,7 @@ const { pending, data: data } = await useFetch("/api/getEmployees", {
      </div>
     </dialog>
    </div>
-   <div class="flex justify-center items-center h-full w-full" v-if="pending">
-    <span class="loading loading-bars loading-xs"></span>
-    <span class="loading loading-bars loading-sm"></span>
-    <span class="loading loading-bars loading-md"></span>
-    <span class="loading loading-bars loading-lg"></span>
-   </div>
+   <DataLoading v-if="pending" />
    <ul v-else>
     <li v-for="(employee, index) in data.employees" :key="index">
      <div class="collapse collapse-arrow bg-base-200 rounded-none border-b-2">

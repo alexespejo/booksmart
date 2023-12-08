@@ -13,7 +13,9 @@ const demo = useGuestDemo();
    Add to Cart
   </button> -->
   <!-- You can open the modal using ID.showModal() method -->
-  <label :for="props.bookID" :class="props.class">Add to Cart</label>
+  <label :for="props.bookID" :class="props.class"
+   >Add to Cart <Icon name="mdi:cart"
+  /></label>
 
   <!-- Put this part before </body> tag -->
   <input
