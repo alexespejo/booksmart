@@ -35,7 +35,7 @@ function getStatusMessage() {
   case "75":
    return "Good";
   case "100":
-   return "Eggcellent";
+   return "Excellent";
   case "125":
    return "Superb";
   default:

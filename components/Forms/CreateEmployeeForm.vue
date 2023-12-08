@@ -11,7 +11,9 @@ const employeeInfo = reactive({
  Address1: "",
  Address2: "",
  City: "",
- DOB: "",
+ DOB_DD: "",
+ DOB_MM: "",
+ DOB_YR: "",
  FirstName: "",
  HireDate: "",
  LastName: "",
@@ -28,7 +30,7 @@ async function createEmployee() {
    Address1: employeeInfo.Address1,
    Address2: employeeInfo.Address2,
    City: employeeInfo.City,
-   DOB: employeeInfo.DOB,
+   DOB: `${employeeInfo.DOB_DD}/${employeeInfo.DOB_MM}/${employeeInfo.DOB_YR}`,
    FirstName: employeeInfo.FirstName,
    HireDate: getCurrentDate(),
    LastName: employeeInfo.LastName,
@@ -41,7 +43,7 @@ async function createEmployee() {
 }
 </script>
 <template>
- <form class="flex flex-col space-y-2 p-2">
+ <form @submit="createEmployee" class="flex flex-col space-y-2 p-2">
   <label class="form-control w-full max-w-xs">
    <div class="label">
     <span class="label-text text-base">First Name</span>
@@ -119,18 +121,46 @@ async function createEmployee() {
     v-model="employeeInfo.Phone"
    />
   </label>
+  <label class="form-control w-full max-w-xs">
+   <div class="label">
+    <span class="label-text text-base">Phone Number</span>
+   </div>
+   <div class="join">
+    <input
+     class="join-item btn w-1/4"
+     type="text"
+     placeholder="DD"
+     v-model="employeeInfo.DOB_DD"
+    />
+    <input
+     class="join-item btn w-1/4"
+     type="text"
+     placeholder="MM"
+     v-model="employeeInfo.DOB_MM"
+    />
+    <input
+     class="join-item btn w-1/4"
+     type="text"
+     placeholder="YR"
+     v-model="employeeInfo.DOB_YR"
+    />
+   </div>
+  </label>
 
   <label class="form-control w-full max-w-xs">
    <div class="label">
     <span class="label-text">Position</span>
    </div>
-   <select v-model="employeeInfo.Position" class="select select-bordered">
+   <select
+    required
+    v-model="employeeInfo.Position"
+    class="select select-bordered"
+   >
     <option disabled selected>Pick one</option>
     <option value="Full Time Clerk">Full Time Clerk</option>
    </select>
   </label>
-  <button @click="createEmployee" class="btn btn-accent max-w-fit">
-   Create
-  </button>
+
+  <button class="mt-5 btn btn-accent max-w-fit">Create</button>
  </form>
 </template>

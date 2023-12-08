@@ -2,18 +2,15 @@
 const { pending, data: data } = await useFetch("/api/getEmployees", {
  lazy: true,
 });
-const demo = useGuestDemo();
 </script>
 
 <template>
  <NuxtLayout>
   <main class="">
-   <div class="sticky top-0 border-b-2 px-5 py-4 bg-base-100 flex items-center">
-    <button
-     :disabled="demo"
-     class="btn btn-accent ml-auto"
-     onclick="my_modal_3.showModal()"
-    >
+   <div
+    class="sticky top-0 border-b-2 px-5 py-4 bg-base-100 z-50 flex items-center"
+   >
+    <button class="btn btn-accent ml-auto" onclick="my_modal_3.showModal()">
      Add New Employee
     </button>
     <dialog id="my_modal_3" class="modal">
@@ -56,7 +53,6 @@ const demo = useGuestDemo();
            <th>Address</th>
            <th>Address 2</th>
            <th>Phone</th>
-           <th>Birthday</th>
            <th>Birthday</th>
           </tr>
          </thead>
