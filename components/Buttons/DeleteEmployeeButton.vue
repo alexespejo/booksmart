@@ -14,22 +14,16 @@ async function deleteBook() {
 </script>
 
 <template>
- <div class="dropdown dropdown-left">
-  <div tabindex="0" role="button" class="btn m-1">
-   <ButtonsThreeDotButton />
-  </div>
-  <form action="" class="flex flex-col">
-   <ul
-    tabindex="0"
-    class="dropdown-content z-[50] menu p-2 shadow bg-base-100 rounded-box w-52"
-   >
-    <button @click="() => alert('hello')" class="btn btn-sm hover:btn-info">
-     Edit
-    </button>
-    <button @click="deleteBook" class="btn hover:btn-error btn-sm">
-     Delete
-    </button>
-   </ul>
-  </form>
- </div>
+ <ul class="menu bg-base-200 rounded-box ml-auto">
+  <li class="tooltip tooltip-left" data-tip="Remove Employee">
+   <button>
+    <Icon name="mdi:trash" size="24px" />
+   </button>
+  </li>
+  <li class="tooltip tooltip-left" data-tip="Edit Employee">
+   <a>
+    <Icon name="mdi:pencil" size="24px" />
+   </a>
+  </li>
+ </ul>
 </template>

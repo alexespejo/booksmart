@@ -204,7 +204,11 @@ const demo = useGuestDemo();
         class="btn btn-md btn-neutral mt-auto border-2 border-base-200 max-w-fit"
        />
       </div>
-      <ButtonsModifyBookButton :bookID="book.key" :title="book.content.title" />
+      <ButtonsModifyBookButton
+       :bookID="book.key"
+       :title="book.content.title"
+       :index="index"
+      />
      </div>
     </li>
    </ul>
