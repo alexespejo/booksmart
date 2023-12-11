@@ -6,12 +6,12 @@ const cartItemCount = useCartCounter();
   {{ demo }}
   <SideBarDrawer />
   <div
-   class="w-full h-screen flex items-center justify-center p-10 overflow-hidden relative"
+   class="w-full h-screen flex items-center justify-center p-11 overflow-hidden relative"
   >
    <div
     tabindex="0"
     role="button"
-    class="btn btn-base-100 btn-circle absolute top-5 right-5"
+    class="btn btn-base-100 btn-circle absolute top-1 right-1"
    >
     <div class="indicator">
      <svg
@@ -32,7 +32,7 @@ const cartItemCount = useCartCounter();
     </div>
    </div>
    <div
-    class="h-5/6 w-full overflow-y-auto relative rounded-xl border-2 border-neutral bg-base-200"
+    class="h-full w-full overflow-y-auto relative rounded-xl border-2 border-neutral bg-base-200"
    >
     <slot />
    </div>

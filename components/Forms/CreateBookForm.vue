@@ -83,7 +83,6 @@ async function createBook() {
    },
   });
  }
- alert(bookID);
 
  try {
   await $fetch("/api/addBookToAuthor", {

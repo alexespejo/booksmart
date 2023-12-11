@@ -9,22 +9,29 @@ async function deleteBook() {
    docType: "books",
   },
  });
+ return navigateTo("/viewBooks/default");
 }
 </script>
 
 <template>
  <ul class="menu bg-base-200 rounded-box ml-auto">
   <li class="tooltip tooltip-left" data-tip="Remove Book">
-   <a>
-    <label :for="`my_modal_${props.index}`">
+   <button @click="deleteBook">
+    <label
+     :for="`my_modal_${props.index}`"
+     class="hover:text-error cursor:pointer"
+    >
      <Icon name="mdi:trash" size="24px" />
     </label>
-   </a>
+   </button>
   </li>
   <li class="tooltip tooltip-left" data-tip="Edit Book">
-   <a>
+   <NuxtLink
+    :to="`/updateBook/${props.bookID}`"
+    class="hover:text-info cursor:pointer"
+   >
     <Icon name="mdi:pencil" size="24px" />
-   </a>
+   </NuxtLink>
   </li>
   <!-- The button to open modal -->
 
