@@ -68,19 +68,16 @@ async function updateBookInformation() {
   method: "put",
   body: {
    bookID: route.params.bookID,
-   title: formInput.title !== "" ? formInput.title : book.book.title,
+   title: formInput.title !== "" ? formInput.title : false,
+   cost: formInput.cost !== "" ? formInput.cost : false,
+   description: formInput.description !== "" ? formInput.description : false,
+   author: formInput.author !== "" ? formInput.author : false,
    //  condition: formInput.condition ? parseInt(formInput.condition) / 25 : 0,
    //  pubDate: formInput.pubDate,
    //  edition: formInput.edition,
    //  publisher: formInput.publisher || "n/a",
    //  sold: false,
    //  srp: formInput.srp,
-   //  cost: formInput.cost !== "" ? formInput.cost : book.book.cost,
-   author: formInput.author !== "" ? formInput.author : book.book.author,
-   description:
-    formInput.description !== ""
-     ? formInput.description
-     : book.book.description,
   },
  });
 }
@@ -94,7 +91,6 @@ async function updateBookInformation() {
     action=""
     class="flex flex-wrap w-full flex-col space-y-6 p-5 h-full justify-center items-center"
    >
-    {{ formInput }}
     <label class="form-control w-full max-w-xs">
      <div class="label">
       <span class="label-text text-xl">Book Title</span>
@@ -144,7 +140,8 @@ async function updateBookInformation() {
        v-for="(author, index) in authors.authors"
        :key="index"
        :value="author.ID"
-       :selected="author.ID == book.book.author"
+       :selected="author.ID.toString() == book.book.author.toString()"
+       :disabled="author.ID.toString() == book.book.author.toString()"
       >
        {{ author.FirstName }} {{ author.LastName ? author.LastName : "" }}
       </option>
@@ -173,7 +170,7 @@ async function updateBookInformation() {
      ></textarea>
     </label>
     <button
-     @click.prevent="updateBookInformation"
+     @click="updateBookInformation"
      class="btn btn-accent btn-md max-w-fit ml-auto"
     >
      Update Book
