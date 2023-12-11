@@ -12,6 +12,6 @@ export default defineEventHandler(async (event) => {
  const customer_data: any = querySnapshot.docs.map((x) => x.data());
 
  return {
-  employees: customer_data,
+  customers: customer_data,
  };
 });
