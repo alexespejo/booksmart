@@ -108,7 +108,9 @@ const demo = useGuestDemo();
     </div>
 
     <div v-if="!demo" class="dropdown dropdown-end">
-     <div tabindex="0" role="button" class="btn m-1 btn-outline">Filters</div>
+     <div tabindex="0" role="button" class="btn m-1 btn-outline">
+      Filters <Icon name="mdi:sort" />
+     </div>
      <ul
       class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 border-2"
      >
@@ -125,12 +127,17 @@ const demo = useGuestDemo();
         >Show Only Unavailable</NuxtLink
        >
       </li>
+      <li>
+       <NuxtLink :disabled="demo" to="/viewBooks/ascCondition">
+        Sort by Condition</NuxtLink
+       >
+      </li>
      </ul>
     </div>
-    <button class="btn btn-accent ml-auto" onclick="my_modal_3.showModal()">
+    <button class="btn btn-accent ml-auto" onclick="createBook.showModal()">
      Add New Book
     </button>
-    <dialog id="my_modal_3" class="modal">
+    <dialog id="createBook" class="modal">
      <div class="modal-box h-full overflow-hidden">
       <form method="dialog">
        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
@@ -144,11 +151,8 @@ const demo = useGuestDemo();
      </div>
     </dialog>
    </div>
-   <div class="flex justify-center items-center h-full" v-if="pending">
-    <span class="loading loading-bars loading-xs"></span>
-    <span class="loading loading-bars loading-sm"></span>
-    <span class="loading loading-bars loading-md"></span>
-    <span class="loading loading-bars loading-lg"></span>
+   <div v-if="pending">
+    <DataLoading />
    </div>
    <ul class="" v-else>
     <div class="p-5 text-3xl" v-if="computedList.length === 0">No Results</div>
@@ -169,19 +173,23 @@ const demo = useGuestDemo();
          >{{ addNumberSuffix(book.content.edition) }} Edition</span
         >
        </h1>
-       <h1 class="text-base font-normal">${{ book.content.cost }}</h1>
-       <h1 class="text-base font-normal">SRP: ${{ book.content.srp }}</h1>
+       <div class="flex items-center space-x-2">
+        <h1 class="text-xl font-normal">${{ book.content.cost }}</h1>
+        <h1 class="text-base font-normal italic">
+         SRP: ${{ book.content.srp }}
+        </h1>
+       </div>
       </div>
       <div class="">
        <AuthorTab :authorID="book.content.author" />
       </div>
      </div>
 
-     <div class="w-56 flex items-center text-base ml-auto max-w-lg">
+     <div class="w-64 flex items-center text-base ml-auto max-w-lg">
       <div class="flex flex-col space-y-1">
        <h1 class="font-light italic">
         Condition:
-        <span :class="getStatusColor(book.content.condition)">{{
+        <span class="font-bold not-italic">{{
          getStatusMessage(book.content.condition)
         }}</span>
        </h1>
@@ -190,18 +198,17 @@ const demo = useGuestDemo();
         <span v-else> Sold </span>
        </h1>
        <AddToCartBtn
+        v-if="!book.content.sold"
         :bookID="book.key"
         :bookTitle="book.content.title"
         class="btn btn-md btn-neutral mt-auto border-2 border-base-200 max-w-fit"
        />
       </div>
-      <div class="tooltip ml-auto" data-tip="Edit">
-       <ButtonsModifyBookButton
-        :bookID="book.key"
-        :title="book.content.title"
-        :index="index"
-       />
-      </div>
+      <ButtonsModifyBookButton
+       :bookID="book.key"
+       :title="book.content.title"
+       :index="index"
+      />
      </div>
     </li>
    </ul>

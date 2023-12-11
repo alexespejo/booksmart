@@ -16,10 +16,10 @@ export default defineEventHandler(async (event) => {
   bookQuery = query(bookCollection, where("sold", "==", true));
  } else if (reqQuery.req === "showStock") {
   bookQuery = query(bookCollection, where("sold", "==", false));
+ } else if (reqQuery.req === "ascCondition") {
+  bookQuery = query(bookCollection, orderBy("condition", "desc"));
  }
- //  if (reqQuery.req === "titleAlphaAsc") {
- //   bookQuery = query(bookCollection, orderBy("title", "asc"));
- //  } else if (reqQuery.req === "titleAlphaDesc") {
+ //  else if (reqQuery.req === "titleAlphaDesc") {
  //   bookQuery = query(bookCollection, orderBy("title", "desc"));
  //  } else if (reqQuery.req === "costAsc") {
  //   bookQuery = query(bookCollection, orderBy("cost", "asc"));
@@ -38,8 +38,4 @@ export default defineEventHandler(async (event) => {
  return {
   books: books_data,
  };
- //  }
- //  return {
- //   bad: reqQuery.req,
- //  };
 });

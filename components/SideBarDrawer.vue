@@ -14,13 +14,29 @@ const demo = useGuestDemo();
    <ul class="menu p-4 text-base-content w-72 text-lg">
     <!-- Sidebar content here -->
     <li>
-     <NuxtLink to="/viewBooks/default">View Books</NuxtLink>
+     <NuxtLink to="/viewBooks/default">
+      <Icon name="mdi:book-open-blank-variant" />
+      View Books
+     </NuxtLink>
     </li>
     <li>
-     <NuxtLink to="/viewEmployees">View Employees</NuxtLink>
+     <NuxtLink to="/viewEmployees">
+      <Icon name="mdi:account-group" />
+      View Employees</NuxtLink
+     >
     </li>
-    <li><NuxtLink to="/viewOrders">View Orders</NuxtLink></li>
-    <li><a>View Customers</a></li>
+    <li>
+     <NuxtLink to="/viewOrders">
+      <Icon name="material-symbols:orders" />
+      View Orders</NuxtLink
+     >
+    </li>
+    <li>
+     <a>
+      <Icon name="carbon:customer" />
+      View Customers</a
+     >
+    </li>
    </ul>
    <div
     class="p-2 absolute bottom-0 left-0 right-0 m-auto border-t-2 border-base-300"
