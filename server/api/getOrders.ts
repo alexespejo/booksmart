@@ -8,10 +8,10 @@ import { db } from "../../composables/utils/firebase";
 @description An API that gets all employees in the employee collection
  */
 export default defineEventHandler(async (event) => {
- const querySnapshot = await getDocs(collection(db, "customers"));
- const customer_data: any = querySnapshot.docs.map((x) => x.data());
+ const querySnapshot = await getDocs(collection(db, "orders"));
+ const order_data: any = querySnapshot.docs.map((x) => x.data());
 
  return {
-  customers: customer_data,
+  orders: order_data,
  };
 });

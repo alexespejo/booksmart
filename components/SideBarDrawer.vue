@@ -32,10 +32,10 @@ const demo = useGuestDemo();
      >
     </li>
     <li>
-     <a>
+     <NuxtLink to="/customers/viewCustomers">
       <Icon name="carbon:customer" />
-      View Customers</a
-     >
+      View Customers
+     </NuxtLink>
     </li>
    </ul>
    <div
