@@ -5,23 +5,27 @@ const { pending, data: orders } = await useLazyFetch("/api/getOrders");
 <template>
  <NuxtLayout>
   <div
-   class="sticky top-0 border-b-2 px-5 py-4 bg-base-100 z-50 flex items-center"
+   class="sticky top-0 border-b-2 px-5 py-4 bg-base-100 z-50 flex items-center justify-between"
   >
+   <h1 class="text-3xl">Orders</h1>
    <div class="join">
-    <div class="dropdown join-item">
-     <div tabindex="0" role="button" class="btn m-1 btn-secondary">Filter</div>
+    <!-- <div class="dropdown join-item join-horizontal">
+     <div tabindex="0" role="button" class="join-item btn btn-outline">
+      Filter
+     </div>
      <ul
       tabindex="0"
-      class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+      class="dropdown-content border-2 z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
      >
-      <li><a>Item 1</a></li>
-      <li><a>Item 2</a></li>
+      <li><NuxtLink to="/viewOrders?query=onlyShipped">Shipped</NuxtLink></li>
+      <li><NuxtLink to="/viewOrders?query=pickedUp">Picked Up</NuxtLink></li>
      </ul>
-    </div>
+    </div> -->
+    <button class="join-item btn btn-accent" onclick="my_modal_3.showModal()">
+     Create a new Order
+    </button>
    </div>
-   <button class="btn btn-accent ml-auto" onclick="my_modal_3.showModal()">
-    Create a new Order
-   </button>
+
    <dialog id="my_modal_3" class="modal">
     <div class="modal-box h-5/6">
      <form method="dialog">

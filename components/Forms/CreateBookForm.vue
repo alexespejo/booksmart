@@ -119,8 +119,6 @@ const existingAuthorToggle = ref(false);
 
 <template>
  <form action="" class="flex flex-col space-y-6 p-2 pb-5 w-full">
-  {{ existingAuthorToggle }}
-  {{ authorLname }}
   <label class="form-control w-full max-w-xs">
    <div class="label">
     <span class="label-text text-xl">Book Title</span>
