@@ -7,9 +7,10 @@ const { pending, data: customers } = await useLazyFetch("/api/getCustomers");
   <div
    class="sticky top-0 border-b-2 px-5 py-4 bg-base-100 z-50 flex items-center"
   >
-   <button class="btn btn-accent ml-auto" onclick="my_modal_3.showModal()">
+   <h1 class="text-3xl">Customers</h1>
+   <!-- <button class="btn btn-accent ml-auto" onclick="my_modal_3.showModal()">
     Add New Customer
-   </button>
+   </button> -->
    <dialog id="my_modal_3" class="modal">
     <div class="modal-box h-5/6">
      <form method="dialog">
@@ -29,9 +30,7 @@ const { pending, data: customers } = await useLazyFetch("/api/getCustomers");
      <input type="radio" name="my-accordion-2" />
      <div class="collapse-title text-xl font-medium">
       <div class="">
-       <h1 class="text-3xl">
-        {{ customer.FirstName }} {{ customer.LastName }}
-       </h1>
+       <h1 class="text-xl">{{ customer.FirstName }} {{ customer.LastName }}</h1>
        <h2 class="italic text-base">{{ customer.Position }}</h2>
       </div>
      </div>

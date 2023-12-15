@@ -14,7 +14,7 @@ const demo = useGuestDemo();
    <ul class="menu p-4 text-base-content w-72 text-lg">
     <!-- Sidebar content here -->
     <li>
-     <NuxtLink to="/viewBooks/default">
+     <NuxtLink to="/viewBooks/showStock">
       <Icon name="mdi:book-open-blank-variant" />
       View Books
      </NuxtLink>
@@ -28,8 +28,8 @@ const demo = useGuestDemo();
     <li>
      <NuxtLink to="/viewOrders/default">
       <Icon name="material-symbols:orders" />
-      View Orders</NuxtLink
-     >
+      View Orders
+     </NuxtLink>
     </li>
     <li>
      <NuxtLink to="/customers/viewCustomers">
