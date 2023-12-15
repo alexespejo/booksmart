@@ -1,4 +1,5 @@
 <script setup>
+const route = useRoute();
 const { pending, data: orders } = await useLazyFetch("/api/getOrders");
 </script>
 <template>
@@ -8,7 +9,7 @@ const { pending, data: orders } = await useLazyFetch("/api/getOrders");
   >
    <div class="join">
     <div class="dropdown join-item">
-     <div tabindex="0" role="button" class="btn m-1">Filter</div>
+     <div tabindex="0" role="button" class="btn m-1 btn-secondary">Filter</div>
      <ul
       tabindex="0"
       class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
@@ -16,16 +17,6 @@ const { pending, data: orders } = await useLazyFetch("/api/getOrders");
       <li><a>Item 1</a></li>
       <li><a>Item 2</a></li>
      </ul>
-    </div>
-    <select class="select select-bordered join-item">
-     <option disabled selected>Filter</option>
-     <option>Sci-fi</option>
-     <option>Drama</option>
-     <option>Action</option>
-    </select>
-    <div class="indicator">
-     <span class="indicator-item badge badge-secondary">new</span>
-     <button class="btn join-item">Search</button>
     </div>
    </div>
    <button class="btn btn-accent ml-auto" onclick="my_modal_3.showModal()">
@@ -39,13 +30,12 @@ const { pending, data: orders } = await useLazyFetch("/api/getOrders");
       </button>
      </form>
      <h3 class="font-bold text-xl border-b-2">Create an Order</h3>
-     <FormsCreateEmployeeForm />
+     <FormsCreateOrderForm />
     </div>
    </dialog>
   </div>
   <DataLoading v-if="pending" />
-  <main v-else class=""></main>
-  <div class="overflow-x-auto">
+  <div v-else class="overflow-x-auto">
    <table class="table table-sm">
     <!-- head -->
     <thead>

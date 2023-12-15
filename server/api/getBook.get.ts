@@ -1,4 +1,4 @@
-import { doc, getDoc, colelction } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../composables/utils/firebase";
 
 export default defineEventHandler(async (event) => {

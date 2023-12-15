@@ -201,6 +201,7 @@ const demo = useGuestDemo();
         v-if="!book.content.sold"
         :bookID="book.key"
         :bookTitle="book.content.title"
+        :bookCost="book.content.cost"
         class="btn btn-md btn-neutral mt-auto border-2 border-base-200 max-w-fit"
        />
       </div>

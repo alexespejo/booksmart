@@ -9,7 +9,11 @@ import { db } from "../../composables/utils/firebase";
  */
 export default defineEventHandler(async (event) => {
  const querySnapshot = await getDocs(collection(db, "customers"));
- const customer_data: any = querySnapshot.docs.map((x) => x.data());
+ const customer_data: any = querySnapshot.docs.map((x) => {
+  const order = x.data();
+  order["ID"] = x.id;
+  return order;
+ });
 
  return {
   customers: customer_data,
