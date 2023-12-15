@@ -26,7 +26,7 @@ const demo = useGuestDemo();
      >
     </li>
     <li>
-     <NuxtLink to="/viewOrders">
+     <NuxtLink to="/viewOrders/default">
       <Icon name="material-symbols:orders" />
       View Orders</NuxtLink
      >

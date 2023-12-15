@@ -1,8 +1,16 @@
 <script setup>
-const props = defineProps(["bookID", "class", "bookTitle"]);
+import { useCartTotal } from "~/composables/states";
+
+const props = defineProps(["bookID", "class", "bookTitle", "bookCost"]);
+const totalCount = useCartTotal();
 const cartCount = useCartCounter();
+const shoppingCart = useCart();
 function addToCart() {
- ++cartCount.value;
+ if (!shoppingCart.value.includes(props.bookID)) {
+  shoppingCart.value.push(props.bookID);
+  totalCount.value += parseInt(props.bookCost);
+  ++cartCount.value;
+ }
 }
 const demo = useGuestDemo();
 </script>
